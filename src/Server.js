@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const cors = require("cors");
-const DefaultRouter = require("../routers/DefaultRouter");
+const UserRouter = require("../routers/UserRouter");
 
 const {DbParameters} = require("../configuration/ConfigParameters");
 const Config = require("../configuration/Config");
@@ -23,7 +23,7 @@ class Server extends express{
         this.use(cors());
         defaultConfig.SetupDB();
         //Routes
-        this.use('/default', require( '../routers/DefaultRouter' ) );
+        this.use('/user', require( '../routers/UserRouter' ) );
 
     }
 
