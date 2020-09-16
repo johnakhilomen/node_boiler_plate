@@ -34,8 +34,11 @@
     "cors": "^2.8.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "install": "^0.13.0",
+    "minimist": "^1.2.5",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.5",
+    "npm": "^6.14.8",
     "path": "^0.12.7"
   },
   "devDependencies": {
