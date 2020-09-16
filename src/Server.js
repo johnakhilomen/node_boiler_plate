@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
@@ -12,6 +13,11 @@ class Server extends express{
     constructor()
     {
         super();
+        // view engine setup
+        this.set('views', path.join(__dirname, 'views'));
+        this.engine('html', require('ejs').renderFile);
+        this.set('view engine', 'html');
+
         this.use(bodyparser.urlencoded({ extended: false }));
         this.use(bodyparser.json());
         this.use(cors());

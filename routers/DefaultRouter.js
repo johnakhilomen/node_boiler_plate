@@ -1,9 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const DefaultController = require("../src/controllers/DefaultController");
 module.exports = (function () {
-    router.get("/", (req, res)=>{
-            res.send("Hey there");
-        })
+    router.get("/", DefaultController.defaultPage)
         .post("/", (req, res)=>{
         } );
 
