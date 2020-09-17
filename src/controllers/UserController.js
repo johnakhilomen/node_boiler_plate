@@ -13,7 +13,7 @@ class UserController
             Password: Password
         };
         const userViewModel = new UserViewModel(newUser);
-        userViewModel.CreateUser((err, user)=>{
+        userViewModel.Create((err, user)=>{
             console.log(err);
             if(err) 
             {
