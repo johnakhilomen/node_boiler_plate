@@ -1,4 +1,5 @@
 const {User} = require("../models/UserModel");
+const bcrypt = require("bcrypt");
 
 class UserViewModel {
     _userModel;
@@ -6,12 +7,22 @@ class UserViewModel {
     {
         this._user = user;
     }
+    
     Create = (callback) => {
         const modelLocal = this._user;
-        const model = new User(modelLocal);
-        model.save(callback);
+        bcrypt.genSalt(10, function(err, salt) {
+            if(err) 
+                {
+                   console.log(err)
+                }
+                const model = new User(modelLocal);
+            bcrypt.hash(model.Password, salt, function(err, hash) {
+                model.Password = hash;
+                model.save(callback);
+            });
+        });
     }
-     
+    
     GetById = (id, callback) => {
         var query = {"_id": id};
         User.findOne(query, callback);
