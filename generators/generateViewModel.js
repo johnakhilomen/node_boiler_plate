@@ -39,6 +39,30 @@ let createFunction = (extratfromViewModelInLowerCase, usertrue) => {
     `;
 }
 
+let comparePasswords = () => {
+    return `
+    ComparePassword = (candidatePassword, hash, callback) => {
+        bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
+            if(err) 
+            {
+                console.log(err);
+            };
+            callback(null, isMatch);
+        });
+    }
+    `
+}
+
+let getUserByEmail = () => {
+    return `
+    GetUserByEmail = function (email, callback)
+    {
+    var query = {"Login.Emailaddress": email};
+	UserDetail.findOne(query, callback);
+    }
+    `;
+}
+
 if (extratfromViewModel.indexOf("User") != -1 || extratfromViewModel.indexOf("User") != -1)
 {
     fileContent +=

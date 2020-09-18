@@ -1,12 +1,11 @@
 const ConnectMongo = require("../../dbSetups/SetupMongo");
 
 const UserSchema = ConnectMongo.Schema({
-Fullname: {
+Fullname : {
             type : String,
             required: "Fullname is required",
             minlength: 6, 
             maxlength: 100,
-            lowercase: true,
             unique: false,
             },
 Emailaddress: {
@@ -19,7 +18,7 @@ Emailaddress: {
             unique: true,
             match: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
             },
-Password: {
+Password : {
             type : String,
             required: "Password is required",
             minlength: 6,
