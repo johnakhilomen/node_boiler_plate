@@ -15,10 +15,28 @@ class SetupPostgresql extends Sequelize
                 ssl: {
                     rejectUnauthorized: false,
                   },
+            },
+            pool: {
+                max: 10,
+                min: 0,
+                acquire: 30000,
+                idle: 10000
             }
         })
         this.dbConnect;
         
+       
+// BlogTag will be our way of tracking relationship between Blog and Tag models
+// each Blog can have multiple tags and each Tag can have multiple blogs
+/*const BlogTag = sequelize.define('blog_tag', {})
+const Blog = BlogModel(sequelize, Sequelize)
+const Tag = TagModel(sequelize, Sequelize)
+
+Blog.belongsToMany(Tag, { through: BlogTag, unique: false })
+Tag.belongsToMany(Blog, { through: BlogTag, unique: false })
+Blog.belongsTo(User);*/
+
+
     }
 
     dbConnect = async () => {
@@ -34,9 +52,14 @@ class SetupPostgresql extends Sequelize
     }
 }
 
-(function() {
+/*(function() {
     let t = new SetupPostgresql();
     t.dbConnect();
-})();
+})();*/
 
-module.exports = new SetupPostgresql();
+const PostgreSqlConnectionOject = new SetupPostgresql();
+/*PostgreSqlConnectionOject.sync({ force: true })
+  .then(() => {
+    console.log(`Database & tables created!`)
+  })*/
+module.exports = {PostgreSqlConnectionOject}

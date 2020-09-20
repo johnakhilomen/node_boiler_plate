@@ -1,7 +1,30 @@
 //node ./generators/generateModel.js --model UserModel --labels '{"Fullname":"String", "Emailaddress" : "String", "Password" : "String"}'
 //node ./generators/generateModel.js --model UserModel --labels '{"Fullname":"String", "Geolocation": "Object", "SomeArray" : "[]" }'
 
-let displayInfo = () => {
+//node ./generators/generateModel.js --model UserModel --labels '{"Fullname":"String", "Emailaddress" : "String", "Password" : "String"}'
+
+const {User} = require("../src/models/postgres/UserModel");
+ 
+async function CreateUser()
+{
+    try
+    {
+        const jane = await User.create({ name: "Bob"});
+        console.log("Jane's auto-generated ID:", jane.id);
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
+   
+}
+
+(function(){
+    CreateUser();
+})();
+
+
+/*let displayInfo = () => {
     console.log(`Examples of labels to pass as argument: ${["Fullname", "Emailaddress", "Username", "Password",
     "Address", "City", "State", "Country", "Zip", "Geolocation", "ActivationCode"
     ]}`);
@@ -123,3 +146,4 @@ const { exit } = require("process");
 
 
 })()
+*/
